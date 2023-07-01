@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           routerDelegate: appRouter.delegate(),
           routeInformationParser: appRouter.defaultRouteParser(),
           title: appTitle,
-          theme: AppTheme.light,
+          theme: AppThemeData.lightTheme,
         ),
       ),
     );

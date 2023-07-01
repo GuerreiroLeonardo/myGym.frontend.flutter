@@ -1,5 +1,6 @@
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_clean_architecture/src/utils/store/app-store.dart';
 import 'package:get_it/get_it.dart';
 
 import 'data/datasources/local/app_database.dart';
@@ -18,9 +19,9 @@ Future<void> initializeDependencies() async {
 
   final dio = Dio();
   dio.interceptors.add(AwesomeDioInterceptor());
-
   locator.registerSingleton<Dio>(dio);
-
+  final appStores = AppStore();
+  locator.registerSingleton<AppStore>(appStores);
   locator.registerSingleton<NewsApiService>(
     NewsApiService(locator<Dio>()),
   );

@@ -39,13 +39,21 @@ class _$AppRouter extends RootStackRouter {
         child: const SavedArticlesView(),
       );
     },
+    WalkthroughViewRoute.name: (routeData) {
+      final args = routeData.argsAs<WalkthroughViewRouteArgs>(
+          orElse: () => const WalkthroughViewRouteArgs());
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: WalkthroughView(key: args.key),
+      );
+    },
   };
 
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
           BreakingNewsViewRoute.name,
-          path: '/',
+          path: '/breaking-news-view',
         ),
         RouteConfig(
           ArticleDetailsViewRoute.name,
@@ -54,6 +62,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           SavedArticlesViewRoute.name,
           path: '/saved-articles-view',
+        ),
+        RouteConfig(
+          WalkthroughViewRoute.name,
+          path: '/',
         ),
       ];
 }
@@ -64,7 +76,7 @@ class BreakingNewsViewRoute extends PageRouteInfo<void> {
   const BreakingNewsViewRoute()
       : super(
           BreakingNewsViewRoute.name,
-          path: '/',
+          path: '/breaking-news-view',
         );
 
   static const String name = 'BreakingNewsViewRoute';
@@ -115,4 +127,28 @@ class SavedArticlesViewRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SavedArticlesViewRoute';
+}
+
+/// generated route for
+/// [WalkthroughView]
+class WalkthroughViewRoute extends PageRouteInfo<WalkthroughViewRouteArgs> {
+  WalkthroughViewRoute({Key? key})
+      : super(
+          WalkthroughViewRoute.name,
+          path: '/',
+          args: WalkthroughViewRouteArgs(key: key),
+        );
+
+  static const String name = 'WalkthroughViewRoute';
+}
+
+class WalkthroughViewRouteArgs {
+  const WalkthroughViewRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'WalkthroughViewRouteArgs{key: $key}';
+  }
 }
