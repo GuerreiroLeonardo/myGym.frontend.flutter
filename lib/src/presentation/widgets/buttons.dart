@@ -1,8 +1,8 @@
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/src/utils/constants/app-colors.dart';
-import 'package:flutter_clean_architecture/src/utils/constants/general.dart';
-import 'package:flutter_clean_architecture/src/utils/widgets/AppWidget.dart';
+import 'package:my_gym_coach/src/presentation/widgets/AppWidget.dart';
+import 'package:my_gym_coach/src/utils/constants/app-colors.dart';
+import 'package:my_gym_coach/src/utils/constants/general.dart';
 
 class MainButton extends StatefulWidget {
   var textContent;

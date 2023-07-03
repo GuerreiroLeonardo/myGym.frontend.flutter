@@ -47,6 +47,30 @@ class _$AppRouter extends RootStackRouter {
         child: WalkthroughView(key: args.key),
       );
     },
+    SignInViewRoute.name: (routeData) {
+      final args = routeData.argsAs<SignInViewRouteArgs>(
+          orElse: () => const SignInViewRouteArgs());
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: SignInView(key: args.key),
+      );
+    },
+    SignUpViewRoute.name: (routeData) {
+      final args = routeData.argsAs<SignUpViewRouteArgs>(
+          orElse: () => const SignUpViewRouteArgs());
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: SignUpView(key: args.key),
+      );
+    },
+    HomeViewRoute.name: (routeData) {
+      final args = routeData.argsAs<HomeViewRouteArgs>(
+          orElse: () => const HomeViewRouteArgs());
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: HomeView(key: args.key),
+      );
+    },
   };
 
   @override
@@ -66,6 +90,18 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           WalkthroughViewRoute.name,
           path: '/',
+        ),
+        RouteConfig(
+          SignInViewRoute.name,
+          path: '/sign-in-view',
+        ),
+        RouteConfig(
+          SignUpViewRoute.name,
+          path: '/sign-up-view',
+        ),
+        RouteConfig(
+          HomeViewRoute.name,
+          path: '/home-view',
         ),
       ];
 }
@@ -150,5 +186,77 @@ class WalkthroughViewRouteArgs {
   @override
   String toString() {
     return 'WalkthroughViewRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [SignInView]
+class SignInViewRoute extends PageRouteInfo<SignInViewRouteArgs> {
+  SignInViewRoute({Key? key})
+      : super(
+          SignInViewRoute.name,
+          path: '/sign-in-view',
+          args: SignInViewRouteArgs(key: key),
+        );
+
+  static const String name = 'SignInViewRoute';
+}
+
+class SignInViewRouteArgs {
+  const SignInViewRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SignInViewRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [SignUpView]
+class SignUpViewRoute extends PageRouteInfo<SignUpViewRouteArgs> {
+  SignUpViewRoute({Key? key})
+      : super(
+          SignUpViewRoute.name,
+          path: '/sign-up-view',
+          args: SignUpViewRouteArgs(key: key),
+        );
+
+  static const String name = 'SignUpViewRoute';
+}
+
+class SignUpViewRouteArgs {
+  const SignUpViewRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SignUpViewRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [HomeView]
+class HomeViewRoute extends PageRouteInfo<HomeViewRouteArgs> {
+  HomeViewRoute({Key? key})
+      : super(
+          HomeViewRoute.name,
+          path: '/home-view',
+          args: HomeViewRouteArgs(key: key),
+        );
+
+  static const String name = 'HomeViewRoute';
+}
+
+class HomeViewRouteArgs {
+  const HomeViewRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'HomeViewRouteArgs{key: $key}';
   }
 }

@@ -1,4 +1,4 @@
-import 'package:flutter_clean_architecture/src/utils/constants/general.dart';
+import 'package:my_gym_coach/src/utils/constants/general.dart';
 
 const t6_ic_activity = "images/theme6/t6_ic_activity.svg";
 const t6_ic_boxing = "images/theme6/t6_ic_boxing.svg";

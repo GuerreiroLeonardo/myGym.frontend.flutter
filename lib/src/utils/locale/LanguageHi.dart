@@ -1,4 +1,4 @@
-import 'package:flutter_clean_architecture/src/utils/locale/Languages.dart';
+import 'package:my_gym_coach/src/utils/locale/Languages.dart';
 
 class LanguageHi extends BaseLanguage {
   @override

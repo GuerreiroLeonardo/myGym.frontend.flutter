@@ -1,14 +1,9 @@
-import 'dart:io';
-
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/src/locator.dart';
-import 'package:flutter_clean_architecture/src/utils/store/app-store.dart';
-import 'package:html/parser.dart';
-import 'package:intl/intl.dart';
+import 'package:my_gym_coach/src/locator.dart';
+import 'package:my_gym_coach/src/utils/store/app-store.dart';
 import 'package:nb_utils/nb_utils.dart';
-import '../constants/general.dart';
+
+import '../../utils/constants/general.dart';
 
 Widget text(
   String? text, {
@@ -128,13 +123,13 @@ BoxDecoration boxDecoration(
 //               Text(text,
 //                       style: primaryTextStyle(
 //                           size: textSize ?? 18,
-//                           color: textColor ?? appStore.textPrimaryColor))
+//                           color: textColor ?? locator<AppStore>().textPrimaryColor))
 //                   .expand(),
 //             ],
 //           ).expand(),
 //           detail ??
 //               Icon(Icons.arrow_forward_ios,
-//                   size: 16, color: appStore.textSecondaryColor),
+//                   size: 16, color: locator<AppStore>().textSecondaryColor),
 //         ],
 //       ).paddingOnly(left: 16, right: 16, top: 8, bottom: 8),
 //     ),
@@ -146,13 +141,13 @@ BoxDecoration boxDecoration(
 //   return Container(
 //     width: MediaQuery.of(context).size.width,
 //     height: 60,
-//     color: color ?? appStore.appBarColor,
+//     color: color ?? locator<AppStore>().appBarColor,
 //     child: Row(
 //       children: <Widget>[
 //         Text(
 //           title,
 //           style: boldTextStyle(
-//               color: color ?? appStore.textPrimaryColor, size: 20),
+//               color: color ?? locator<AppStore>().textPrimaryColor, size: 20),
 //           maxLines: 1,
 //         ).expand(),
 //       ],
@@ -170,7 +165,7 @@ BoxDecoration boxDecoration(
 //     double? elevation}) {
 //   return AppBar(
 //     automaticallyImplyLeading: false,
-//     backgroundColor: color ?? appStore.appBarColor,
+//     backgroundColor: color ?? locator<AppStore>().appBarColor,
 //     leading: showBack
 //         ? IconButton(
 //             onPressed: () {
@@ -183,7 +178,7 @@ BoxDecoration boxDecoration(
 //               // }
 //             },
 //             icon: Icon(Icons.arrow_back,
-//                 color: appStore.isDarkModeOn ? white : black),
+//                 color: locator<AppStore>().isDarkModeOn ? white : black),
 //           )
 //         : null,
 //     title:
@@ -204,7 +199,7 @@ BoxDecoration boxDecoration(
 //   @override
 //   Widget build(BuildContext context) {
 //     return Card(
-//       color: appStore.appBarColor,
+//       color: locator<AppStore>().appBarColor,
 //       margin: EdgeInsets.fromLTRB(12, 12, 12, 0),
 //       elevation: 2.0,
 //       shadowColor: Colors.black,
@@ -213,7 +208,7 @@ BoxDecoration boxDecoration(
 //         title: Text(tabBarType.name!, style: boldTextStyle()),
 //         trailing: showTrailing
 //             ? Icon(Icons.arrow_forward_ios,
-//                 size: 15, color: appStore.textPrimaryColor)
+//                 size: 15, color: locator<AppStore>().textPrimaryColor)
 //             : tabBarType.isNew.validate()
 //                 ? Text('New', style: secondaryTextStyle(color: Colors.red))
 //                 : null,
@@ -233,23 +228,23 @@ BoxDecoration boxDecoration(
 //   }
 // }
 
-// class CustomTheme extends StatelessWidget {
-//   final Widget? child;
+class CustomTheme extends StatelessWidget {
+  final Widget? child;
 
-//   CustomTheme({required this.child});
+  CustomTheme({required this.child});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Theme(
-//       data: appStore.isDarkModeOn
-//           ? ThemeData.dark().copyWith(
-//               scaffoldBackgroundColor: context.scaffoldBackgroundColor,
-//             )
-//           : ThemeData.light(),
-//       child: child!,
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: locator<AppStore>().isDarkModeOn
+          ? ThemeData.dark().copyWith(
+              scaffoldBackgroundColor: context.scaffoldBackgroundColor,
+            )
+          : ThemeData.light(),
+      child: child!,
+    );
+  }
+}
 
 Widget? Function(BuildContext, String) placeholderWidgetFn() =>
     (_, s) => placeholderWidget();

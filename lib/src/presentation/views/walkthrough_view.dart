@@ -1,16 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture/src/config/router/app_router.dart';
-import 'package:flutter_clean_architecture/src/presentation/widgets/buttons.dart';
-import 'package:flutter_clean_architecture/src/utils/constants/app-colors.dart';
-import 'package:flutter_clean_architecture/src/utils/constants/general.dart';
-import 'package:flutter_clean_architecture/src/utils/constants/images.dart';
-import 'package:flutter_clean_architecture/src/utils/constants/strings.dart';
-import 'package:flutter_clean_architecture/src/utils/widgets/AppWidget.dart';
-import 'package:flutter_clean_architecture/src/utils/widgets/dots_indicator/dots_indicator.dart';
+import 'package:my_gym_coach/src/config/router/app_router.dart';
+import 'package:my_gym_coach/src/presentation/widgets/buttons.dart';
+import 'package:my_gym_coach/src/utils/constants/app-colors.dart';
+import 'package:my_gym_coach/src/utils/constants/general.dart';
+import 'package:my_gym_coach/src/utils/constants/images.dart';
+import 'package:my_gym_coach/src/utils/constants/strings.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:nb_utils/nb_utils.dart';
+
+import '../widgets/AppWidget.dart';
+import '../widgets/dots_indicator/dots_indicator.dart';
 
 class WalkthroughView extends HookWidget {
   WalkthroughView({Key? key}) : super(key: key);
@@ -27,14 +27,20 @@ class WalkthroughView extends HookWidget {
       child: Stack(
         children: <Widget>[
           Container(
-              alignment: Alignment.topRight,
+            alignment: Alignment.topRight,
+            child: GestureDetector(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: text("Skip",
                     textAllCaps: true,
                     textColor: t6colorPrimary,
                     fontFamily: fontMedium),
-              )),
+              ),
+              onTap: () {
+                appRouter.push(SignInViewRoute());
+              },
+            ),
+          ),
           Container(
             margin: const EdgeInsets.only(top: 20),
             width: context.width(),
@@ -76,7 +82,7 @@ class WalkthroughView extends HookWidget {
                       : "Próximo",
                   onPressed: () {
                     if (currentIndexPage.value == pageLength.value - 1) {
-                      appRouter.push(const SavedArticlesViewRoute());
+                      appRouter.push(SignInViewRoute());
                       return;
                     }
                     currentIndexPage.value += 1;

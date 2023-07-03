@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:flutter_clean_architecture/src/utils/locale/LanguageEn.dart';
-import 'package:flutter_clean_architecture/src/utils/locale/LanguageFr.dart';
-import 'package:flutter_clean_architecture/src/utils/locale/Languages.dart';
+import 'package:my_gym_coach/src/utils/locale/LanguageEn.dart';
+import 'package:my_gym_coach/src/utils/locale/LanguageFr.dart';
+import 'package:my_gym_coach/src/utils/locale/Languages.dart';
 
 import 'LanguageAr.dart';
 import 'LanguageHi.dart';
