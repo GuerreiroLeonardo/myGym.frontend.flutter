@@ -7,6 +7,7 @@ import '../../../domain/models/article.dart';
 import '../../../domain/repositories/database_repository.dart';
 
 part 'local_articles_state.dart';
+// SEMELHANTE AO ChangeNotifier NO PROVIDER
 
 class LocalArticlesCubit extends Cubit<LocalArticlesState> {
   final DatabaseRepository _databaseRepository;

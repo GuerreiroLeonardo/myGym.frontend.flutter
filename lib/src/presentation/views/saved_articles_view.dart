@@ -26,6 +26,7 @@ class SavedArticlesView extends HookWidget {
           style: TextStyle(color: Colors.black),
         ),
       ),
+      // SIMILAR TO CONSUMER ON PROVIDER.
       body: BlocBuilder<LocalArticlesCubit, LocalArticlesState>(
         builder: (_, state) {
           switch (state.runtimeType) {
@@ -56,6 +57,7 @@ class SavedArticlesView extends HookWidget {
         return ArticleWidget(
           article: articles[index],
           isRemovable: true,
+          // SIMILAR TO provider.of ON PROVIDER.
           onRemove: (article) => BlocProvider.of<LocalArticlesCubit>(context)
               .removeArticle(article: article),
           onArticlePressed: (article) => appRouter.push(

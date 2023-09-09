@@ -1,5 +1,6 @@
 part of 'local_articles_cubit.dart';
 
+// SEMELHANTE AO ChangeNotifier NO PROVIDER
 abstract class LocalArticlesState extends Equatable {
   final List<Article> articles;
 

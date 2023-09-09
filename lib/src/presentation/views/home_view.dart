@@ -1,11 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:my_gym_coach/src/domain/models/ui/log.model.dart';
+import 'package:my_gym_coach/src/presentation/views/profile.dart';
 import 'package:my_gym_coach/src/utils/constants/app-colors.dart';
 import 'package:my_gym_coach/src/utils/store/app-store.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+import '../../config/router/app_router.dart';
 import '../../domain/models/ui/slider.model.dart';
 import '../../locator.dart';
 import '../../utils/constants/general.dart';
@@ -99,10 +102,13 @@ class HomeView extends HookWidget {
     );
   }
 
-  Widget tabItem(var pos, var icon, var name) {
+  Widget tabItem(var pos, var icon, var name, {var nextView = false}) {
     return GestureDetector(
       onTap: () {
         isSelected = pos;
+        if (nextView is PageRouteInfo) {
+          appRouter.push(nextView);
+        }
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -110,9 +116,7 @@ class HomeView extends HookWidget {
           alignment: Alignment.center,
           decoration: isSelected == pos
               ? BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: t6colorPrimary,
-                  borderRadius: BorderRadius.circular(8))
+                  color: t6colorPrimary, borderRadius: BorderRadius.circular(8))
               : const BoxDecoration(),
           child: Padding(
             padding: const EdgeInsets.all(6.0),
@@ -361,51 +365,57 @@ class HomeView extends HookWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Stack(
-        alignment: Alignment.topCenter,
-        children: <Widget>[
-          Container(
-            //margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-            height: 70,
-            decoration: BoxDecoration(
-              color: context.scaffoldBackgroundColor,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-              boxShadow: [
-                BoxShadow(
-                  color: shadowColorGlobal,
-                  blurRadius: 10,
-                  spreadRadius: 2,
-                ),
-              ],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Flexible(
-                  child: tabItem(1, t6_ic_activity, t6_lbl_activity),
-                  flex: 1,
-                ),
-                Flexible(
-                  child: tabItem(2, t6_ic_list, t6_lbl_health),
-                  flex: 1,
-                ),
-                Flexible(
-                  child: tabItem(3, t6_ic_meal, t6_lbl_meals),
-                  flex: 1,
-                ),
-                Flexible(
-                  child: tabItem(4, t6_ic_work_bn, t6_lbl_work),
-                  flex: 1,
-                ),
-                Flexible(
-                  child: tabItem(5, t6_ic_sleep, t6_lbl_sleep),
-                  flex: 1,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      // bottomNavigationBar: Stack(
+      //   alignment: Alignment.topCenter,
+      //   children: <Widget>[
+      //     Container(
+      //       //margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      //       height: 70,
+      //       decoration: BoxDecoration(
+      //         color: context.scaffoldBackgroundColor,
+      //         borderRadius: const BorderRadius.all(Radius.circular(10)),
+      //         boxShadow: [
+      //           BoxShadow(
+      //             color: shadowColorGlobal,
+      //             blurRadius: 10,
+      //             spreadRadius: 2,
+      //           ),
+      //         ],
+      //       ),
+      //       child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //         children: <Widget>[
+      //           Flexible(
+      //             child: tabItem(
+      //               1,
+      //               t6_ic_activity,
+      //               "Home",
+      //             ),
+      //             flex: 1,
+      //           ),
+      //           Flexible(
+      //             child: tabItem(
+      //               2,
+      //               t6_ic_list,
+      //               "Treinos",
+      //             ),
+      //             flex: 1,
+      //           ),
+      //           Flexible(
+      //             child: tabItem(3, t6_ic_meal, "Vídeos",
+      //                 nextView: VideosViewRoute()),
+      //             flex: 1,
+      //           ),
+      //           Flexible(
+      //             child: tabItem(4, t6_ic_sleep, "Perfil",
+      //                 nextView: ProfileViewRoute()),
+      //             flex: 1,
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

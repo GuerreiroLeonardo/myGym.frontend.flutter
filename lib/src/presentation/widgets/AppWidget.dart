@@ -49,6 +49,50 @@ BoxDecoration boxDecoration(
   );
 }
 
+class TopBar extends StatefulWidget {
+  var titleName;
+  final bool isDirect;
+
+  TopBar({var this.titleName = "", this.isDirect = false});
+
+  @override
+  State<StatefulWidget> createState() {
+    return TopBarState(isDirect: isDirect);
+  }
+}
+
+class TopBarState extends State<TopBar> {
+  final bool isDirect;
+
+  TopBarState({this.isDirect = false});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 60,
+        color: locator<AppStore>().appBarColor,
+        child: Stack(
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.keyboard_arrow_left, size: 45),
+              onPressed: () {
+                finish(context);
+              },
+            ),
+            Center(
+                child: text(widget.titleName,
+                    textColor: locator<AppStore>().textPrimaryColor,
+                    fontSize: textSizeNormal,
+                    fontFamily: fontBold))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 // Future<List<LatLngAndGeohash>> getListOfLatLngAndGeoHash(
 //     BuildContext context) async {
 //   try {

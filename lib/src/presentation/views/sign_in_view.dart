@@ -63,7 +63,8 @@ class SignInView extends HookWidget {
                 MainButton(
                   textContent: "Sign In",
                   onPressed: () {
-                    appRouter.push(HomeViewRoute());
+                    appRouter.push(const DashboardViewRoute());
+                    appRouter.popUntilRouteWithName('WalkthroughView');
                   },
                 ),
                 const SizedBox(height: 10),
@@ -95,15 +96,18 @@ class SignInView extends HookWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Container(
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle, color: t6form_google),
-                      width: width / 7.5,
-                      height: width / 7.5,
-                      padding: EdgeInsets.all(width / 28),
-                      child: SvgPicture.asset(
-                        t6_google_fill,
-                        color: t6white,
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle, color: t6form_google),
+                        width: width / 7.5,
+                        height: width / 7.5,
+                        padding: EdgeInsets.all(width / 28),
+                        child: SvgPicture.asset(
+                          t6_google_fill,
+                          color: t6white,
+                        ),
                       ),
                     ),
                     const SizedBox(

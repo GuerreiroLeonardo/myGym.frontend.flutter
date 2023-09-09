@@ -37,6 +37,9 @@ dependencies:
   flutter_svg: ^2.0.7
   carousel_slider: ^4.2.1
   simple_animations: ^5.0.2
+  firebase_core: ^2.15.1
+  firebase_auth: ^4.9.0
+  google_sign_in: ^6.1.5
 
 dev_dependencies:
   flutter_test:
@@ -63,3 +66,10 @@ flutter:
         - asset: assets/fonts/IBMPlexSans-Bold.ttf
         - asset: assets/fonts/IBMPlexSans-Light.ttf
         - asset: assets/fonts/IBMPlexSans-Regular.ttf
+  assets:
+    - images/
+    - images/app/
+    - images/app/icons/
+    - images/app/socialIcons/
+    - images/learner/
+    - images/theme6/

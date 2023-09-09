@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "201985008257",
+    "project_id": "mygymcoach-93e3e",
+    "storage_bucket": "mygymcoach-93e3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201985008257:android:7bfc8723ed9100409ca380",
+        "android_client_info": {
+          "package_name": "com.example.flutter_clean_architecture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201985008257-rkabf8ps33f8tqdgld9m1eqvngh4hrrq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPHZZ0eWcUzUjoLglmShlVMTxEV8Ro4jA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201985008257-42r9sroj40nsjh17nc0opvmvstlaq7jt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "201985008257-6nq7md08fehmerkfgm3b4sapfug6im6o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.zephyr.mygymcoach"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201985008257:android:44ceeb7f0955d3a89ca380",
+        "android_client_info": {
+          "package_name": "com.zephyr.mygymcoach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201985008257-rkabf8ps33f8tqdgld9m1eqvngh4hrrq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPHZZ0eWcUzUjoLglmShlVMTxEV8Ro4jA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201985008257-42r9sroj40nsjh17nc0opvmvstlaq7jt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "201985008257-6nq7md08fehmerkfgm3b4sapfug6im6o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.zephyr.mygymcoach"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

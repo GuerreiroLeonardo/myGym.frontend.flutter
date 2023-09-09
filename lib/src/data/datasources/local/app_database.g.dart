@@ -63,6 +63,8 @@ class _$AppDatabase extends AppDatabase {
 
   ArticleDao? _articleDaoInstance;
 
+  AppUserDao? _appUserDaoInstance;
+
   Future<sqflite.Database> open(
     String path,
     List<Migration> migrations, [
@@ -86,6 +88,8 @@ class _$AppDatabase extends AppDatabase {
       onCreate: (database, version) async {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `articles_table` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `source` TEXT, `author` TEXT, `title` TEXT, `description` TEXT, `url` TEXT, `urlToImage` TEXT, `publishedAt` TEXT, `content` TEXT)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `users` (`id` TEXT PRIMARY KEY AUTOINCREMENT, `name` TEXT, `email` TEXT, `photoURL` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -96,6 +100,11 @@ class _$AppDatabase extends AppDatabase {
   @override
   ArticleDao get articleDao {
     return _articleDaoInstance ??= _$ArticleDao(database, changeListener);
+  }
+
+  @override
+  AppUserDao get appUserDao {
+    return _appUserDaoInstance ??= _$AppUserDao(database, changeListener);
   }
 }
 
@@ -167,6 +176,63 @@ class _$ArticleDao extends ArticleDao {
   @override
   Future<void> deleteArticle(Article article) async {
     await _articleDeletionAdapter.delete(article);
+  }
+}
+
+class _$AppUserDao extends AppUserDao {
+  _$AppUserDao(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database),
+        _appUserInsertionAdapter = InsertionAdapter(
+            database,
+            'users',
+            (AppUser item) => <String, Object?>{
+                  'id': item.id,
+                  'name': item.name,
+                  'email': item.email,
+                  'photoURL': item.photoURL
+                }),
+        _appUserDeletionAdapter = DeletionAdapter(
+            database,
+            'users',
+            ['id'],
+            (AppUser item) => <String, Object?>{
+                  'id': item.id,
+                  'name': item.name,
+                  'email': item.email,
+                  'photoURL': item.photoURL
+                });
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<AppUser> _appUserInsertionAdapter;
+
+  final DeletionAdapter<AppUser> _appUserDeletionAdapter;
+
+  @override
+  Future<AppUser?> getUser(String email) async {
+    return _queryAdapter.query('SELECT * FROM users WHERE email = ?1;',
+        mapper: (Map<String, Object?> row) => AppUser(
+            id: row['id'] as String?,
+            name: row['name'] as String?,
+            email: row['email'] as String?,
+            photoURL: row['photoURL'] as String?),
+        arguments: [email]);
+  }
+
+  @override
+  Future<void> insertUser(AppUser user) async {
+    await _appUserInsertionAdapter.insert(user, OnConflictStrategy.replace);
+  }
+
+  @override
+  Future<void> deleteUser(AppUser user) async {
+    await _appUserDeletionAdapter.delete(user);
   }
 }
 

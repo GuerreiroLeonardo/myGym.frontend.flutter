@@ -63,12 +63,37 @@ class _$AppRouter extends RootStackRouter {
         child: SignUpView(key: args.key),
       );
     },
+    DashboardViewRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: DashboardView(),
+      );
+    },
     HomeViewRoute.name: (routeData) {
       final args = routeData.argsAs<HomeViewRouteArgs>(
           orElse: () => const HomeViewRouteArgs());
       return AdaptivePage<dynamic>(
         routeData: routeData,
         child: HomeView(key: args.key),
+      );
+    },
+    ProfileViewRoute.name: (routeData) {
+      final args = routeData.argsAs<ProfileViewRouteArgs>(
+          orElse: () => const ProfileViewRouteArgs());
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: ProfileView(key: args.key),
+      );
+    },
+    VideosViewRoute.name: (routeData) {
+      final args = routeData.argsAs<VideosViewRouteArgs>(
+          orElse: () => const VideosViewRouteArgs());
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: VideosView(
+          key: args.key,
+          isDirect: args.isDirect,
+        ),
       );
     },
   };
@@ -100,8 +125,25 @@ class _$AppRouter extends RootStackRouter {
           path: '/sign-up-view',
         ),
         RouteConfig(
-          HomeViewRoute.name,
-          path: '/home-view',
+          DashboardViewRoute.name,
+          path: '/dashboard',
+          children: [
+            RouteConfig(
+              HomeViewRoute.name,
+              path: 'home',
+              parent: DashboardViewRoute.name,
+            ),
+            RouteConfig(
+              ProfileViewRoute.name,
+              path: 'profile',
+              parent: DashboardViewRoute.name,
+            ),
+            RouteConfig(
+              VideosViewRoute.name,
+              path: 'videos',
+              parent: DashboardViewRoute.name,
+            ),
+          ],
         ),
       ];
 }
@@ -238,12 +280,25 @@ class SignUpViewRouteArgs {
 }
 
 /// generated route for
+/// [DashboardView]
+class DashboardViewRoute extends PageRouteInfo<void> {
+  const DashboardViewRoute({List<PageRouteInfo>? children})
+      : super(
+          DashboardViewRoute.name,
+          path: '/dashboard',
+          initialChildren: children,
+        );
+
+  static const String name = 'DashboardViewRoute';
+}
+
+/// generated route for
 /// [HomeView]
 class HomeViewRoute extends PageRouteInfo<HomeViewRouteArgs> {
   HomeViewRoute({Key? key})
       : super(
           HomeViewRoute.name,
-          path: '/home-view',
+          path: 'home',
           args: HomeViewRouteArgs(key: key),
         );
 
@@ -258,5 +313,63 @@ class HomeViewRouteArgs {
   @override
   String toString() {
     return 'HomeViewRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [ProfileView]
+class ProfileViewRoute extends PageRouteInfo<ProfileViewRouteArgs> {
+  ProfileViewRoute({Key? key})
+      : super(
+          ProfileViewRoute.name,
+          path: 'profile',
+          args: ProfileViewRouteArgs(key: key),
+        );
+
+  static const String name = 'ProfileViewRoute';
+}
+
+class ProfileViewRouteArgs {
+  const ProfileViewRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ProfileViewRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [VideosView]
+class VideosViewRoute extends PageRouteInfo<VideosViewRouteArgs> {
+  VideosViewRoute({
+    Key? key,
+    bool isDirect = false,
+  }) : super(
+          VideosViewRoute.name,
+          path: 'videos',
+          args: VideosViewRouteArgs(
+            key: key,
+            isDirect: isDirect,
+          ),
+        );
+
+  static const String name = 'VideosViewRoute';
+}
+
+class VideosViewRouteArgs {
+  const VideosViewRouteArgs({
+    this.key,
+    this.isDirect = false,
+  });
+
+  final Key? key;
+
+  final bool isDirect;
+
+  @override
+  String toString() {
+    return 'VideosViewRouteArgs{key: $key, isDirect: $isDirect}';
   }
 }

@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../domain/models/article.dart';
-import '../../../domain/models/requests/breaking_news.request.dart';
-import '../../../domain/repositories/api_repository.dart';
-import '../../../utils/constants/nums.dart';
-import '../../../utils/resources/data_state.dart';
+import 'package:my_gym_coach/src/domain/models/article.dart';
+import 'package:my_gym_coach/src/domain/models/requests/breaking_news.request.dart';
+import 'package:my_gym_coach/src/domain/repositories/api_repository.dart';
+import 'package:my_gym_coach/src/utils/constants/nums.dart';
+import 'package:my_gym_coach/src/utils/resources/data_state.dart';
 import '../base/base_cubit.dart';
 
 part 'remote_articles_state.dart';
