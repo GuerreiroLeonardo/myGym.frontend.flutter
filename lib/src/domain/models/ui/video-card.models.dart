@@ -1,5 +1,9 @@
 class VideoCardModel {
-  late var img;
+  late var image;
   var name;
-  var subject;
+  var description;
+  var method;
+  var targetMuscles;
+  var equipments;
+  var trainingCategory;
 }

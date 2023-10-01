@@ -1,5 +1,9 @@
 import 'package:my_gym_coach/src/utils/constants/general.dart';
 
+////
+const power_button = "images/app/power-button.svg";
+
+///
 const t6_ic_activity = "images/theme6/t6_ic_activity.svg";
 const t6_ic_boxing = "images/theme6/t6_ic_boxing.svg";
 const t6_ic_cycle = "images/theme6/t6_ic_cycle.svg";
@@ -33,7 +37,7 @@ const ic_medal = "./images/learner/learner_ic_medal.png";
 const ic_heart = "images/learner/learner_ic_heart.svg";
 const ic_user = "images/learner/learner_ic_user.svg";
 const ic_achievements = "images/learner/learner_ic_achievements.svg";
-const profile_6 = "$BaseUrl/images/theme5/t5_profile_6.jpeg";
+const profile_6 = "$BaseUrl/images/theme7/t7_ic_hotel1.png";
 
 ///leaner erase later
 ///

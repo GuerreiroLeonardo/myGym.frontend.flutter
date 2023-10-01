@@ -5,7 +5,7 @@ import '../../utils/constants/strings.dart';
 
 @Entity(tableName: usersTableName)
 class AppUser extends Equatable {
-  @PrimaryKey(autoGenerate: true)
+  @PrimaryKey(autoGenerate: false)
   final String? id;
   final String? name;
   final String? email;

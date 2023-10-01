@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_gym_coach/src/config/router/app_router.dart';
+import 'package:my_gym_coach/src/presentation/cubits/firebase_authentication/firebase_authentication_cubit.dart';
 import 'package:my_gym_coach/src/presentation/widgets/buttons.dart';
 import 'package:my_gym_coach/src/utils/constants/app-colors.dart';
 import 'package:my_gym_coach/src/utils/constants/general.dart';
@@ -17,7 +19,6 @@ class WalkthroughView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final remoteArticlesCubit = BlocProvider.of<RemoteArticlesCubit>(context);
     final pageController = usePageController();
 
     final currentIndexPage = useState(0);

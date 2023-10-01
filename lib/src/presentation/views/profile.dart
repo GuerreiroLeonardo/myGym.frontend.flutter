@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:my_gym_coach/Screens/LearnerAchievement.dart';
 // import 'package:my_gym_coach/Screens/LearnerFavourites.dart';
 // import 'package:my_gym_coach/Screens/LearnerMyFriends.dart';
 import 'package:my_gym_coach/main.dart';
+import 'package:my_gym_coach/src/presentation/cubits/firebase_authentication/firebase_authentication_cubit.dart';
 // import 'package:my_gym_coach/utils/AppWidget.dart';
 // import 'package:my_gym_coach/utils/LearnerColors.dart';
 // import 'package:my_gym_coach/utils/LearnerConstant.dart';
@@ -27,7 +29,8 @@ class ProfileView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final remoteArticlesCubit = BlocProvider.of<RemoteArticlesCubit>(context);
+    final firebaseAuthenticationCubit =
+        BlocProvider.of<FirebaseAuthenticationCubit>(context);
     var width = context.width();
     var height = context.height();
     return Scaffold(
@@ -46,8 +49,8 @@ class ProfileView extends HookWidget {
                           border:
                               Border.all(color: iconColorPrimary, width: 4)),
                       child: CircleAvatar(
-                          backgroundImage: const CachedNetworkImageProvider(
-                              learner_ic_Profile),
+                          backgroundImage: CachedNetworkImageProvider(
+                              locator<AppStore>().googleUserPhotoUrl),
                           radius: width / 8.5),
                     ),
                     const SizedBox(
@@ -56,7 +59,7 @@ class ProfileView extends HookWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        text("Nimasha Perara",
+                        text(locator<AppStore>().googleUserName,
                             fontFamily: fontSemibold,
                             textColor: appTextColorPrimary),
                         text(lbl_390_290_points,
@@ -154,10 +157,47 @@ class ProfileView extends HookWidget {
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
+              16.height,
+              GestureDetector(
+                onTap: () async {
+                  await firebaseAuthenticationCubit.signOut(context: context);
+                },
+                child: Container(
+                  decoration: boxDecoration(
+                      bgColor: context.theme.cardTheme.color,
+                      showShadow: false,
+                      radius: 0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 10, 16, 8),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: boxDecoration(
+                                  bgColor: locator<AppStore>().isDarkModeOn
+                                      ? black
+                                      : white,
+                                  radius: 8,
+                                  showShadow: true),
+                              width: 40,
+                              height: 40,
+                              padding: const EdgeInsets.all(10),
+                              child: SvgPicture.asset(power_button),
+                            ),
+                            16.width,
+                            text(sign_out, textColor: errorColor),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),

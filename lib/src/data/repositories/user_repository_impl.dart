@@ -9,6 +9,7 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<AppUser?> getSavedUser(String email) async {
+    AppUser? user = await _appDatabase.appUserDao.getUser(email);
     return _appDatabase.appUserDao.getUser(email);
   }
 

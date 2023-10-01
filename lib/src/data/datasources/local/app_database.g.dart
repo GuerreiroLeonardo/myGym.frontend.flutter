@@ -89,7 +89,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `articles_table` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `source` TEXT, `author` TEXT, `title` TEXT, `description` TEXT, `url` TEXT, `urlToImage` TEXT, `publishedAt` TEXT, `content` TEXT)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `users` (`id` TEXT PRIMARY KEY AUTOINCREMENT, `name` TEXT, `email` TEXT, `photoURL` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `users_table` (`id` TEXT, `name` TEXT, `email` TEXT, `photoURL` TEXT, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -186,7 +186,7 @@ class _$AppUserDao extends AppUserDao {
   )   : _queryAdapter = QueryAdapter(database),
         _appUserInsertionAdapter = InsertionAdapter(
             database,
-            'users',
+            'users_table',
             (AppUser item) => <String, Object?>{
                   'id': item.id,
                   'name': item.name,
@@ -195,7 +195,7 @@ class _$AppUserDao extends AppUserDao {
                 }),
         _appUserDeletionAdapter = DeletionAdapter(
             database,
-            'users',
+            'users_table',
             ['id'],
             (AppUser item) => <String, Object?>{
                   'id': item.id,
@@ -216,7 +216,7 @@ class _$AppUserDao extends AppUserDao {
 
   @override
   Future<AppUser?> getUser(String email) async {
-    return _queryAdapter.query('SELECT * FROM users WHERE email = ?1;',
+    return _queryAdapter.query('SELECT * FROM users_table WHERE email = ?1;',
         mapper: (Map<String, Object?> row) => AppUser(
             id: row['id'] as String?,
             name: row['name'] as String?,

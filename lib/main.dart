@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_gym_coach/firebase_options.dart';
 import 'package:my_gym_coach/src/domain/repositories/user_repository.dart';
 import 'package:my_gym_coach/src/presentation/cubits/firebase_authentication/firebase_authentication_cubit.dart';
+import 'package:my_gym_coach/src/presentation/views/walkthrough_view.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'src/config/router/app_router.dart';
@@ -17,6 +19,8 @@ import 'src/utils/constants/strings.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initialize();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -31,6 +35,12 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+          lazy: false,
+          create: (context) => FirebaseAuthenticationCubit(
+            locator<UserRepository>(),
+          )..checkAuthenticationStatus(),
+        ),
+        BlocProvider(
           create: (context) => LocalArticlesCubit(
             locator<DatabaseRepository>(),
           )..getAllSavedArticles(),
@@ -40,10 +50,6 @@ class MyApp extends StatelessWidget {
             locator<ApiRepository>(),
           )..getBreakingNewsArticles(),
         ),
-        BlocProvider(
-            create: (context) => FirebaseAuthenticationCubit(
-                  locator<UserRepository>(),
-                ))
       ],
       child: OKToast(
         child: MaterialApp.router(

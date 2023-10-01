@@ -142,6 +142,7 @@ class HomeView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = context.width();
     // changeStatusColor(locator<AppStore>().appBarColor!);
     // state
     final ValueNotifier<int> selectedPos = useState(1);
@@ -166,71 +167,161 @@ class HomeView extends HookWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              text(t6_lbl_hi_carnegie,
+                              text(
+                                  "${hi} ${locator<AppStore>().googleUserName != null ? locator<AppStore>().googleUserName.split(' ')[0] : "Student"}",
                                   textColor:
                                       locator<AppStore>().textPrimaryColor),
                               Icon(Icons.notifications_active,
                                   color: locator<AppStore>().iconColor),
                             ],
                           ),
-                          text(t6_lbl_how_was_your_day,
-                              textColor: locator<AppStore>().textPrimaryColor,
-                              fontFamily: fontMedium)
                         ],
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Container(
-                    margin: const EdgeInsets.only(left: 16),
-                    child: text(t6_lbl_your_progress_this_week,
-                        textColor: t6colorPrimary, fontFamily: fontMedium),
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                    margin: const EdgeInsets.only(left: 16, right: 16),
-                    child: CustomTheme(
-                      child: CalendarStrip(
-                        startDate: startDate,
-                        endDate: endDate,
-                        onDateSelected: onSelect,
-                        dateTileBuilder: dateTileBuilder,
-                        iconColor: Colors.transparent,
-                        monthNameWidget: _monthNameWidget,
-                        containerDecoration: boxDecoration(
-                            radius: 16,
-                            showShadow: true,
-                            bgColor: context.scaffoldBackgroundColor),
-                        addSwipeGesture: true,
+                  // AppButton(
+                  //   elevation: 2,
+                  //   width: width * 0.95,
+                  //   padding: EdgeInsets.all(18),
+                  //   margin: EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                  //   child: Row(
+                  //     children: [
+                  //       Icon(
+                  //         Icons.fitness_center_rounded,
+                  //         color: Colors.black,
+                  //       ),
+                  //       SizedBox(
+                  //         width: 10,
+                  //       ),
+                  //       Text(my_training, style: boldTextStyle()),
+                  //     ],
+                  //   ),
+                  //   color: context.cardColor,
+                  //   onTap: () {},
+                  // ),
+                  // OutlinedButton(
+                  //   onPressed: null,
+                  //   style: ButtonStyle(
+                  //       shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  //           borderRadius: BorderRadius.circular(30.0))),
+                  //       minimumSize: MaterialStateProperty.all(Size(width, 50)),
+                  //       elevation: MaterialStateProperty.all(2),
+                  //       backgroundColor:
+                  //           MaterialStateProperty.all(Colors.white)),
+                  //   child: Row(
+                  //     children: [
+                  //       const Icon(
+                  //         Icons.fitness_center_rounded,
+                  //         color: Colors.black,
+                  //       ),
+                  //       const SizedBox(
+                  //         width: 10,
+                  //       ),
+                  //       Text(my_training, style: boldTextStyle()),
+                  //     ],
+                  //   ),
+                  // ),
+                  GestureDetector(
+                    onTap: () {
+                      appRouter.push(const MyTrainingViewRoute());
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                        gradient: const LinearGradient(
+                          colors: [
+                            Colors.blue,
+                            Color.fromARGB(255, 115, 113, 159)
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: Colors.blueGrey,
+                          width: 2,
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 16),
+                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.fitness_center_rounded,
+                            color: Colors.black,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(my_training, style: boldTextStyle()),
+                          const Spacer(),
+                          const Icon(
+                            Icons.arrow_forward,
+                            color: Colors.black,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Container(
-                    margin: const EdgeInsets.only(left: 16, right: 16),
-                    child: text(t6_lbl_today_s_workout,
-                        textColor: t6colorPrimary, fontFamily: fontMedium),
-                  ),
-                  const SizedBox(height: 16),
-                  SliderWidget(mSliderList.value),
-                  const SizedBox(height: 16),
-                  Container(
-                    margin: const EdgeInsets.only(left: 16),
-                    child: text(t6_lbl_log_other_activities,
-                        textColor: t6colorPrimary, fontFamily: fontMedium),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    height: context.width() * 0.32,
-                    child: ListView.builder(
-                        padding: const EdgeInsets.all(8),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: mActivity!.value.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return Activity(mActivity!.value[index], index);
-                        }),
-                  ),
+                  // 20.height,
+                  // Container(
+                  //   margin: const EdgeInsets.only(left: 16),
+                  //   child: text(t6_lbl_your_progress_this_week,
+                  //       textColor: t6colorPrimary, fontFamily: fontMedium),
+                  // ),
+                  // const SizedBox(height: 10),
+                  // Container(
+                  //   margin: const EdgeInsets.only(left: 16, right: 16),
+                  //   child: CustomTheme(
+                  //     child: CalendarStrip(
+                  //       startDate: startDate,
+                  //       endDate: endDate,
+                  //       onDateSelected: onSelect,
+                  //       dateTileBuilder: dateTileBuilder,
+                  //       iconColor: Colors.transparent,
+                  //       monthNameWidget: _monthNameWidget,
+                  //       containerDecoration: boxDecoration(
+                  //           radius: 16,
+                  //           showShadow: true,
+                  //           bgColor: context.scaffoldBackgroundColor),
+                  //       addSwipeGesture: true,
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 20),
+                  // Container(
+                  //   margin: const EdgeInsets.only(left: 16, right: 16),
+                  //   child: text(t6_lbl_today_s_workout,
+                  //       textColor: t6colorPrimary, fontFamily: fontMedium),
+                  // ),
+                  // const SizedBox(height: 16),
+                  // SliderWidget(mSliderList.value),
+                  // const SizedBox(height: 16),
+                  // Container(
+                  //   margin: const EdgeInsets.only(left: 16),
+                  //   child: text(t6_lbl_log_other_activities,
+                  //       textColor: t6colorPrimary, fontFamily: fontMedium),
+                  // ),
+                  // const SizedBox(height: 16),
+                  // SizedBox(
+                  //   height: context.width() * 0.32,
+                  //   child: ListView.builder(
+                  //       padding: const EdgeInsets.all(8),
+                  //       scrollDirection: Axis.horizontal,
+                  //       itemCount: mActivity!.value.length,
+                  //       shrinkWrap: true,
+                  //       itemBuilder: (context, index) {
+                  //         return Activity(mActivity!.value[index], index);
+                  //       }),
+                  // ),
                   Container(
                     height: 400,
                     child: ListView(

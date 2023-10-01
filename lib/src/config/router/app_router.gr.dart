@@ -69,6 +69,28 @@ class _$AppRouter extends RootStackRouter {
         child: DashboardView(),
       );
     },
+    VideoDetailViewRoute.name: (routeData) {
+      final args = routeData.argsAs<VideoDetailViewRouteArgs>();
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: VideoDetailView(
+          key: args.key,
+          video: args.video,
+        ),
+      );
+    },
+    MyTrainingViewRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const MyTrainingView(),
+      );
+    },
+    TrainingDetailViewRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const TrainingDetailView(),
+      );
+    },
     HomeViewRoute.name: (routeData) {
       final args = routeData.argsAs<HomeViewRouteArgs>(
           orElse: () => const HomeViewRouteArgs());
@@ -114,7 +136,7 @@ class _$AppRouter extends RootStackRouter {
         ),
         RouteConfig(
           WalkthroughViewRoute.name,
-          path: '/',
+          path: '',
         ),
         RouteConfig(
           SignInViewRoute.name,
@@ -144,6 +166,18 @@ class _$AppRouter extends RootStackRouter {
               parent: DashboardViewRoute.name,
             ),
           ],
+        ),
+        RouteConfig(
+          VideoDetailViewRoute.name,
+          path: '/video-detail-view',
+        ),
+        RouteConfig(
+          MyTrainingViewRoute.name,
+          path: '/my-training-view',
+        ),
+        RouteConfig(
+          TrainingDetailViewRoute.name,
+          path: '/training-detail-view',
         ),
       ];
 }
@@ -213,7 +247,7 @@ class WalkthroughViewRoute extends PageRouteInfo<WalkthroughViewRouteArgs> {
   WalkthroughViewRoute({Key? key})
       : super(
           WalkthroughViewRoute.name,
-          path: '/',
+          path: '',
           args: WalkthroughViewRouteArgs(key: key),
         );
 
@@ -290,6 +324,64 @@ class DashboardViewRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'DashboardViewRoute';
+}
+
+/// generated route for
+/// [VideoDetailView]
+class VideoDetailViewRoute extends PageRouteInfo<VideoDetailViewRouteArgs> {
+  VideoDetailViewRoute({
+    Key? key,
+    required VideoCardModel video,
+  }) : super(
+          VideoDetailViewRoute.name,
+          path: '/video-detail-view',
+          args: VideoDetailViewRouteArgs(
+            key: key,
+            video: video,
+          ),
+        );
+
+  static const String name = 'VideoDetailViewRoute';
+}
+
+class VideoDetailViewRouteArgs {
+  const VideoDetailViewRouteArgs({
+    this.key,
+    required this.video,
+  });
+
+  final Key? key;
+
+  final VideoCardModel video;
+
+  @override
+  String toString() {
+    return 'VideoDetailViewRouteArgs{key: $key, video: $video}';
+  }
+}
+
+/// generated route for
+/// [MyTrainingView]
+class MyTrainingViewRoute extends PageRouteInfo<void> {
+  const MyTrainingViewRoute()
+      : super(
+          MyTrainingViewRoute.name,
+          path: '/my-training-view',
+        );
+
+  static const String name = 'MyTrainingViewRoute';
+}
+
+/// generated route for
+/// [TrainingDetailView]
+class TrainingDetailViewRoute extends PageRouteInfo<void> {
+  const TrainingDetailViewRoute()
+      : super(
+          TrainingDetailViewRoute.name,
+          path: '/training-detail-view',
+        );
+
+  static const String name = 'TrainingDetailViewRoute';
 }
 
 /// generated route for

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:my_gym_coach/src/config/router/app_router.dart';
 import 'package:my_gym_coach/src/locator.dart';
 import 'package:my_gym_coach/src/utils/store/app-store.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../../utils/constants/general.dart';
 
-Widget text(
-  String? text, {
-  var fontSize = textSizeLargeMedium,
-  Color? textColor,
-  var fontFamily,
-  var isCentered = false,
-  var maxLine = 1,
-  var latterSpacing = 0.5,
-  bool textAllCaps = false,
-  var isLongText = false,
-  bool lineThrough = false,
-}) {
+Widget text(String? text,
+    {var fontSize = textSizeLargeMedium,
+    Color? textColor,
+    var fontFamily,
+    var isCentered = false,
+    var maxLine = 1,
+    var latterSpacing = 0.5,
+    bool textAllCaps = false,
+    var isLongText = false,
+    bool lineThrough = false,
+    var fontWeight = FontWeight.normal}) {
   return Text(
     textAllCaps ? text!.toUpperCase() : text!,
     textAlign: isCentered ? TextAlign.center : TextAlign.start,
@@ -25,6 +25,7 @@ Widget text(
     style: TextStyle(
       fontFamily: fontFamily ?? null,
       fontSize: fontSize,
+      fontWeight: fontWeight,
       color: textColor ?? locator<AppStore>().textSecondaryColor,
       height: 1.5,
       letterSpacing: latterSpacing,
@@ -78,14 +79,20 @@ class TopBarState extends State<TopBar> {
             IconButton(
               icon: const Icon(Icons.keyboard_arrow_left, size: 45),
               onPressed: () {
-                finish(context);
+                appRouter.pop();
               },
             ),
             Center(
                 child: text(widget.titleName,
                     textColor: locator<AppStore>().textPrimaryColor,
                     fontSize: textSizeNormal,
-                    fontFamily: fontBold))
+                    fontFamily: fontBold)),
+            const Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Align(
+                  alignment: Alignment.centerRight,
+                  child: const Icon(Icons.calendar_month, size: 30)),
+            ),
           ],
         ),
       ),

@@ -46,21 +46,21 @@ List<LogModel> getList() {
 List<SliderModel> getSliders() {
   List<SliderModel> list = [];
   SliderModel model1 = SliderModel();
-  model1.name = "Superset Solider";
+  model1.name = "Treino A";
   model1.Image = t6_ic_work1;
-  model1.info = "Full Body + weights";
+  model1.info = "Back";
   model1.duration = "12 min";
 
   SliderModel model2 = SliderModel();
-  model2.name = "Superset Solider";
+  model2.name = "Treino B";
   model2.Image = t6_ic_work2;
-  model2.info = "Full Body";
+  model2.info = "Legs";
   model2.duration = "10 min";
 
   SliderModel model3 = SliderModel();
-  model3.name = "Superset Solider";
+  model3.name = "Treino C";
   model3.Image = t6_ic_work1;
-  model3.info = "Full Body + weights";
+  model3.info = "Triceps + Biceps";
   model3.duration = "12 min";
 
   list.add(model1);

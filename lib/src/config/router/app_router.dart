@@ -1,17 +1,20 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:my_gym_coach/src/domain/models/article.dart';
+import 'package:my_gym_coach/src/domain/models/ui/video-card.models.dart';
+import 'package:my_gym_coach/src/presentation/views/article_details_view.dart';
+import 'package:my_gym_coach/src/presentation/views/breaking_news_view.dart';
+import 'package:my_gym_coach/src/presentation/views/dashboard_view.dart';
+import 'package:my_gym_coach/src/presentation/views/home_view.dart';
+import 'package:my_gym_coach/src/presentation/views/my_training_view.dart';
+import 'package:my_gym_coach/src/presentation/views/profile.dart';
+import 'package:my_gym_coach/src/presentation/views/saved_articles_view.dart';
 import 'package:my_gym_coach/src/presentation/views/sign_in_view.dart';
 import 'package:my_gym_coach/src/presentation/views/sign_up_view.dart';
+import 'package:my_gym_coach/src/presentation/views/training_detail_view.dart';
+import 'package:my_gym_coach/src/presentation/views/video_detail_view.dart';
+import 'package:my_gym_coach/src/presentation/views/videos_view.dart';
 import 'package:my_gym_coach/src/presentation/views/walkthrough_view.dart';
-
-import '../../domain/models/article.dart';
-import '../../presentation/views/article_details_view.dart';
-import '../../presentation/views/breaking_news_view.dart';
-import '../../presentation/views/dashboard_view.dart';
-import '../../presentation/views/home_view.dart';
-import '../../presentation/views/profile.dart';
-import '../../presentation/views/saved_articles_view.dart';
-import '../../presentation/views/videos_view.dart';
 
 part 'app_router.gr.dart';
 
@@ -20,7 +23,7 @@ part 'app_router.gr.dart';
     AutoRoute(page: BreakingNewsView),
     AutoRoute(page: ArticleDetailsView),
     AutoRoute(page: SavedArticlesView),
-    AutoRoute(page: WalkthroughView, initial: true),
+    AutoRoute(path: '', page: WalkthroughView),
     AutoRoute(page: SignInView),
     AutoRoute(page: SignUpView),
     AutoRoute(
@@ -32,6 +35,9 @@ part 'app_router.gr.dart';
         AutoRoute(path: 'videos', page: VideosView),
       ],
     ),
+    AutoRoute(page: VideoDetailView),
+    AutoRoute(page: MyTrainingView),
+    AutoRoute(page: TrainingDetailView)
     // AutoRoute(
     //   page: HomeView,
     //   children: [

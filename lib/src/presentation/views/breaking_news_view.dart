@@ -36,7 +36,7 @@ class BreakingNewsView extends HookWidget {
           GestureDetector(
             onTap: () => appRouter.push(const SavedArticlesViewRoute()),
             child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 14),
+              padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
               child: Icon(Ionicons.bookmark, color: Colors.black),
             ),
           ),

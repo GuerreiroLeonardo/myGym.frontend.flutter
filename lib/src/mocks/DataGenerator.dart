@@ -203,25 +203,37 @@ import '../utils/constants/images.dart';
 //   return list;
 // }
 
-List<VideoCardModel> getRecents() {
+List<VideoCardModel> getRecentVideos() {
   List<VideoCardModel> list = [];
 
   var people5 = VideoCardModel();
-  people5.img = profile_6;
+  people5.image = profile_6;
   people5.name = "Nia Scott";
-  people5.subject = "teste";
+  people5.description = "teste";
+  people5.method = "Traditional";
+  people5.targetMuscles = "Biceps";
+  people5.equipments = "Dumbells";
+  people5.trainingCategory = "Workout";
   ;
   list.add(people5);
 
   var people6 = VideoCardModel();
-  people6.img = profile_6;
+  people6.image = profile_6;
   people6.name = "Smith Scott";
-  people6.subject = "teste";
+  people6.description = "teste";
+  people6.method = "Traditional";
+  people6.targetMuscles = "Biceps";
+  people6.equipments = "Dumbells";
+  people6.trainingCategory = "Workout";
   list.add(people6);
   var people7 = VideoCardModel();
-  people7.img = profile_6;
+  people7.image = profile_6;
   people7.name = "Skyla Scott";
-  people7.subject = "teste";
+  people7.description = "teste";
+  people7.method = "Traditional";
+  people7.targetMuscles = "Biceps";
+  people7.equipments = "Dumbells";
+  people7.trainingCategory = "Workout";
   list.add(people7);
   return list;
 }
@@ -230,45 +242,73 @@ List<VideoCardModel> getPending() {
   List<VideoCardModel> list = [];
 
   var people = VideoCardModel();
-  people.img = profile_6;
+  people.image = profile_6;
   people.name = "Alice Smith";
-  people.subject = "teste";
+  people.description = "teste";
+  people.method = "Traditional";
+  people.targetMuscles = "Biceps";
+  people.equipments = "Dumbells";
+  people.trainingCategory = "Workout";
   list.add(people);
 
   var people2 = VideoCardModel();
-  people2.img = profile_6;
+  people2.image = profile_6;
   people2.name = "Hennah Tran";
-  people2.subject = "teste";
+  people2.description = "teste";
+  people2.method = "Traditional";
+  people2.targetMuscles = "Biceps";
+  people2.equipments = "Dumbells";
+  people2.trainingCategory = "Workout";
 
   list.add(people2);
 
   var people3 = VideoCardModel();
-  people3.img = profile_6;
+  people3.image = profile_6;
   people3.name = "Louisa MacGee";
-  people3.subject = "teste";
+  people3.description = "teste";
+  people3.method = "Traditional";
+  people3.targetMuscles = "Biceps";
+  people3.equipments = "Dumbells";
+  people3.trainingCategory = "Workout";
   list.add(people3);
 
   var people4 = VideoCardModel();
-  people4.img = profile_6;
+  people4.image = profile_6;
   people4.name = "Walter James";
-  people4.subject = "teste";
+  people4.description = "teste";
+  people4.method = "Traditional";
+  people4.targetMuscles = "Biceps";
+  people4.equipments = "Dumbells";
+  people4.trainingCategory = "Workout";
   list.add(people4);
 
   var people5 = VideoCardModel();
-  people5.img = profile_6;
+  people5.image = profile_6;
   people5.name = "Nia Scott";
-  people5.subject = "teste";
+  people5.description = "teste";
+  people5.method = "Traditional";
+  people5.targetMuscles = "Biceps";
+  people5.equipments = "Dumbells";
+  people5.trainingCategory = "Workout";
   list.add(people5);
 
   var people6 = VideoCardModel();
-  people6.img = profile_6;
+  people6.image = profile_6;
   people6.name = "Smith Scott";
-  people6.subject = "teste";
+  people6.description = "teste";
+  people6.method = "Traditional";
+  people6.targetMuscles = "Biceps";
+  people6.equipments = "Dumbells";
+  people6.trainingCategory = "Workout";
   list.add(people6);
   var people7 = VideoCardModel();
-  people7.img = profile_6;
+  people7.image = profile_6;
   people7.name = "Skyla Scott";
-  people7.subject = "teste";
+  people7.description = "teste";
+  people7.method = "Traditional";
+  people7.targetMuscles = "Biceps";
+  people7.equipments = "Dumbells";
+  people7.trainingCategory = "Workout";
   list.add(people7);
   list.add(people);
   list.add(people2);

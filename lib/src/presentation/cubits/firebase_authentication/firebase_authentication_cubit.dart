@@ -3,14 +3,18 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:my_gym_coach/src/config/router/app_router.dart';
 
 import 'package:my_gym_coach/src/domain/models/app_user.dart';
 import 'package:my_gym_coach/src/domain/repositories/user_repository.dart';
 import 'package:my_gym_coach/src/locator.dart';
 import 'package:my_gym_coach/src/presentation/cubits/base/base_cubit.dart';
+import 'package:my_gym_coach/src/utils/constants/general.dart';
 import 'package:my_gym_coach/src/utils/constants/strings.dart';
 import 'package:my_gym_coach/src/utils/store/app-store.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:uuid/uuid.dart';
 
 part 'firebase_authentication_state.dart';
 
@@ -26,6 +30,11 @@ class FirebaseAuthenticationCubit
     _firebaseAuth.authStateChanges().listen((user) {
       if (user != null) {
         emit(Authenticated(user));
+        locator<AppStore>().setGoogleUserEmail(email: user.email);
+        locator<AppStore>().setGoogleUserName(name: user.displayName);
+        locator<AppStore>().setGoogleUserPhotoUrl(photoUrl: user.photoURL);
+        appRouter.navigate(const DashboardViewRoute());
+        // appRouter.replaceAll([const DashboardViewRoute()]);
       } else {
         emit(Unauthenticated());
       }
@@ -54,6 +63,7 @@ class FirebaseAuthenticationCubit
 
         firebaseUser = userCredential.user;
         user = AppUser(
+            id: const Uuid().v4(),
             name: firebaseUser?.displayName,
             email: firebaseUser?.email,
             photoURL: firebaseUser?.photoURL);
@@ -71,24 +81,32 @@ class FirebaseAuthenticationCubit
           firebase_authentication_error,
         );
       }
+      return firebaseUser;
+    } else {
+      emit(Unauthenticated());
+      showToast(
+        firebase_authentication_error,
+      );
+      throw new Exception();
     }
-    return firebaseUser;
   }
 
   Future<void> signOut({required BuildContext context}) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
+    String userEmail = await getStringAsync(USER_EMAIL);
+    if (userEmail != "") {
+      var teste = await googleSignIn
+          .signOut()
+          .catchError((error) => showToast('Error signing out. Try again.'));
 
-    await googleSignIn
-        .signOut()
-        .catchError((error) => showToast('Error signing out. Try again.'));
-
-    await locator<AppStore>().setValueGoogleSignIn(val: false);
-
-    if (firebaseUser != null) {
-      var user =
-          await this._apiRepository.getSavedUser(firebaseUser?.email ?? "");
       await _firebaseAuth.signOut();
+      var user = await this._apiRepository.getSavedUser(userEmail);
       this._apiRepository.removeUser(user!);
+      await locator<AppStore>().setValueGoogleSignIn(val: false);
+      await locator<AppStore>().setGoogleUserEmail(email: "");
+      await locator<AppStore>().setGoogleUserName(name: "");
+      await locator<AppStore>().setGoogleUserPhotoUrl(photoUrl: "");
+      appRouter.replaceAll([SignInViewRoute()]);
     } else {
       showToast(user_already_signed_out);
     }

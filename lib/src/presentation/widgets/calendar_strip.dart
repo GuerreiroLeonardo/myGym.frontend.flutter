@@ -254,7 +254,7 @@ class CalendarStripState extends State<CalendarStrip>
       return InkWell(
         child: Icon(
           CupertinoIcons.right_chevron,
-          size: 30,
+          size: 20,
           color: nullOrDefault(widget.iconColor, Colors.black),
         ),
         onTap: onNextRow,
@@ -270,7 +270,7 @@ class CalendarStripState extends State<CalendarStrip>
       return InkWell(
         child: Icon(
           CupertinoIcons.left_chevron,
-          size: 30,
+          size: 20,
           color: nullOrDefault(widget.iconColor, Colors.black),
         ),
         onTap: onPrevRow,

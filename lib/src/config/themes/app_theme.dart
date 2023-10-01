@@ -48,7 +48,6 @@ class AppThemeData {
   static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: appBackgroundColorDark,
     highlightColor: appBackgroundColorDark,
-    errorColor: Color(0xFFCF6676),
     appBarTheme: const AppBarTheme(
       color: appBackgroundColorDark,
       iconTheme: IconThemeData(color: blackColor),

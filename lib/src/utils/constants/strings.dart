@@ -21,14 +21,21 @@ const String defaultSources = 'bbc-news, abc-news, al-jazeera-english';
 
 // Storage and Databases
 const String articlesTableName = 'articles_table';
-const String usersTableName = 'users';
+const String usersTableName = 'users_table';
 const String databaseName = 'app_database.db';
 // titles
 const title_videos = "Videos";
 const title_recently_viewed = "Vistos recentemente";
 const title_video_list = "Lista de vídeos";
+const sign_out = "Sign Out";
 
 // labels
+const target_muscles = "Target Muscles";
+const method = "Method";
+const equipment = "Equipment";
+const hi = "Hi";
+const my_training = "My Training";
+
 const t6_lbl_login = "Login";
 const t6_lbl_glad_to_see_you = "Glad to See You!";
 const t6_lbl_sign_in_to_your_account_and_get_started =

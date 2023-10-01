@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:my_gym_coach/src/config/router/app_router.dart';
 import 'package:my_gym_coach/src/locator.dart';
+import 'package:my_gym_coach/src/presentation/cubits/firebase_authentication/firebase_authentication_cubit.dart';
 import 'package:my_gym_coach/src/presentation/views/home_view.dart';
 import 'package:my_gym_coach/src/presentation/widgets/buttons.dart';
 import 'package:my_gym_coach/src/presentation/widgets/edit_text_style.dart';
@@ -21,7 +24,8 @@ class SignInView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final remoteArticlesCubit = BlocProvider.of<RemoteArticlesCubit>(context);
+    final firebaseAuthenticationCubit =
+        BlocProvider.of<FirebaseAuthenticationCubit>(context);
     var width = context.width();
     var height = context.height();
     return Scaffold(
@@ -63,8 +67,7 @@ class SignInView extends HookWidget {
                 MainButton(
                   textContent: "Sign In",
                   onPressed: () {
-                    appRouter.push(const DashboardViewRoute());
-                    appRouter.popUntilRouteWithName('WalkthroughView');
+                    appRouter.replaceAll([const DashboardViewRoute()]);
                   },
                 ),
                 const SizedBox(height: 10),
@@ -97,7 +100,16 @@ class SignInView extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () async {
+                        User? user = await firebaseAuthenticationCubit.signIn();
+                        locator<AppStore>()
+                            .setGoogleUserEmail(email: user?.email);
+                        locator<AppStore>()
+                            .setGoogleUserName(name: user?.displayName);
+                        locator<AppStore>()
+                            .setGoogleUserPhotoUrl(photoUrl: user?.photoURL);
+                        appRouter.replaceAll([const DashboardViewRoute()]);
+                      },
                       child: Container(
                         decoration: const BoxDecoration(
                             shape: BoxShape.circle, color: t6form_google),
